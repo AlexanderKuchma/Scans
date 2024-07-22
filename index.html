@@ -8,10 +8,18 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
         <a-assets>
-            <a-asset-item id="model" src="assets/models/Scaniverse_2024-07-15_170330.glb"></a-asset-item>
+            <a-asset-item id="model"></a-asset-item>
         </a-assets>
-        <a-entity gltf-model="#model" position="0 0 0"></a-entity>
+        <a-entity id="ar-model" gltf-model="" position="0 0 0"></a-entity>
         <a-marker-camera preset="hiro"></a-marker-camera>
     </a-scene>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const modelUrl = urlParams.get('model');
+        if (modelUrl) {
+            document.querySelector('#model').setAttribute('src', modelUrl);
+            document.querySelector('#ar-model').setAttribute('gltf-model', '#model');
+        }
+    </script>
 </body>
 </html>
