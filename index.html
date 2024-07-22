@@ -3,23 +3,17 @@
 <head>
     <title>AR Viewer</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam;">
         <a-assets>
-            <a-asset-item id="model"></a-asset-item>
+            <a-asset-item id="model" src="assets/models/Scaniverse_2024-07-15_170330.glb"></a-asset-item>
         </a-assets>
-        <a-entity id="ar-model" gltf-model="" position="0 0 0"></a-entity>
-        <a-marker-camera preset="hiro"></a-marker-camera>
+        <a-marker-camera preset='hiro'>
+            <a-entity gltf-model="#model" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
+        </a-marker-camera>
     </a-scene>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const modelUrl = urlParams.get('model');
-        if (modelUrl) {
-            document.querySelector('#model').setAttribute('src', modelUrl);
-            document.querySelector('#ar-model').setAttribute('gltf-model', '#model');
-        }
-    </script>
 </body>
 </html>
