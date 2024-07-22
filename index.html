@@ -3,17 +3,15 @@
 <head>
     <title>AR Viewer</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras/dist/aframe-extras.loaders.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-xr@1.2.0/dist/aframe-xr.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam;">
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         <a-assets>
             <a-asset-item id="model" src="assets/models/Scaniverse_2024-07-15_170330.glb"></a-asset-item>
         </a-assets>
-        <a-marker-camera preset='hiro'>
-            <a-entity gltf-model="#model" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
-        </a-marker-camera>
+        <a-entity gltf-model="#model" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
+        <a-camera-static></a-camera-static>
     </a-scene>
 </body>
 </html>
