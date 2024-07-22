@@ -1,69 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AR Object 1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Viewer</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        #container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .ar-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .ar-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
 </head>
-<body>
-    <div id="container">
-        <a-scene embedded arjs='sourceType: webcam;'>
-            <a-assets>
-                <a-asset-item id="model-asset" src=""></a-asset-item>
-            </a-assets>
-            <a-entity id="ar-model" gltf-model="#model-asset" position="0 0 -2" scale="0.5 0.5 0.5"></a-entity>
-            <a-entity camera></a-entity>
-        </a-scene>
-        <button class="ar-button" onclick="showAR()">Показать</button>
-    </div>
-    <script>
-        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        var model = document.getElementById('model-asset');
-        if (isIOS) {
-            model.setAttribute('src', 'assets/Scaniverse_2024-07-15_170330.usdz');
-        } else {
-            model.setAttribute('src', 'assets/Scaniverse_2024-07-15_170330.glb');
-        }
-
-        function showAR() {
-            document.querySelector('a-scene').style.display = 'block';
-            document.querySelector('.ar-button').style.display = 'none';
-        }
-    </script>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+        <a-assets>
+            <a-asset-item id="model" src="assets/models/Scaniverse_2024-07-15_170330.glb"></a-asset-item>
+        </a-assets>
+        <a-entity gltf-model="#model" position="0 0 0"></a-entity>
+        <a-marker-camera preset="hiro"></a-marker-camera>
+    </a-scene>
 </body>
 </html>
